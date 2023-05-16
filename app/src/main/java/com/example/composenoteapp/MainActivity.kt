@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.composenoteapp.datas.NoteDataSource
 import com.example.composenoteapp.screens.NoteScreen
 import com.example.composenoteapp.ui.theme.ComposeNoteAppTheme
 
@@ -22,7 +23,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    NoteScreen()
+                    NoteScreen(
+                        notes = NoteDataSource().loadNotes(),
+                        addNote = {},
+                        removeNote = {}
+                    )
                 }
             }
         }

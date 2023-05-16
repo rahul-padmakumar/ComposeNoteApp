@@ -17,9 +17,14 @@ import com.example.composenoteapp.R
 import androidx.compose.ui.res.stringResource
 import com.example.composenoteapp.components.NoteButton
 import com.example.composenoteapp.components.NoteTextInputField
+import com.example.composenoteapp.models.Note
 
 @Composable
-fun NoteScreen(){
+fun NoteScreen(
+    notes: List<Note>,
+    addNote: (Note) -> Unit,
+    removeNote: (Note) -> Unit
+){
 
     val titleTextState = remember{
         mutableStateOf("")
@@ -63,7 +68,13 @@ fun NoteScreen(){
 
             NoteButton(
                 text = "Save",
-                onClick = {}
+                onClick = {
+                    if(titleTextState.value.isNotEmpty() && descTextState.isNotEmpty()){
+                        // save the data
+                        titleTextState.value = ""
+                        descTextState = ""
+                    }
+                }
             )
         }
     }
