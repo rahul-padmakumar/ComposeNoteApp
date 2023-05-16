@@ -47,7 +47,11 @@ fun NoteScreen(){
                 modifier= Modifier.padding(top = 9.dp, bottom = 8.dp),
                 text = titleTextState.value,
                 label = "Title",
-                onTextChange = {titleTextState.value = it}
+                onTextChange = {
+                    if(it.all {char -> char.isLetter() || char.isWhitespace()}){
+                        titleTextState.value = it
+                    }
+                }
             )
 
             NoteTextInputField(
