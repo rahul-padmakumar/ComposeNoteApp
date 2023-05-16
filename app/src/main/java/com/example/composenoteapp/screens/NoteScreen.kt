@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.composenoteapp.R
 import androidx.compose.ui.res.stringResource
+import com.example.composenoteapp.components.NoteButton
 import com.example.composenoteapp.components.NoteTextInputField
 
 @Composable
@@ -43,15 +44,22 @@ fun NoteScreen(){
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             NoteTextInputField(
+                modifier= Modifier.padding(top = 9.dp, bottom = 8.dp),
                 text = titleTextState.value,
                 label = "Title",
                 onTextChange = {titleTextState.value = it}
             )
 
             NoteTextInputField(
+                modifier= Modifier.padding(top = 9.dp, bottom = 8.dp),
                 text = descTextState,
                 label = "Description",
                 onTextChange = {descTextState = it}
+            )
+
+            NoteButton(
+                text = "Save",
+                onClick = {}
             )
         }
     }
