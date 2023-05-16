@@ -8,9 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,6 +21,10 @@ import com.example.composenoteapp.components.NoteTextInputField
 fun NoteScreen(){
 
     val titleTextState = remember{
+        mutableStateOf("")
+    }
+
+    var descTextState by remember {
         mutableStateOf("")
     }
 
@@ -40,7 +42,17 @@ fun NoteScreen(){
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ){
-            NoteTextInputField(text = titleTextState.value, label = "Title", onTextChange = {titleTextState.value = it})
+            NoteTextInputField(
+                text = titleTextState.value,
+                label = "Title",
+                onTextChange = {titleTextState.value = it}
+            )
+
+            NoteTextInputField(
+                text = descTextState,
+                label = "Description",
+                onTextChange = {descTextState = it}
+            )
         }
     }
 }
