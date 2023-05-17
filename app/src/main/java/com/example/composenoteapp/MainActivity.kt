@@ -7,12 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.composenoteapp.models.Note
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composenoteapp.screens.NoteScreen
+import com.example.composenoteapp.screens.NoteViewModel
 import com.example.composenoteapp.ui.theme.ComposeNoteAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -25,27 +24,28 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
-                    val notes = remember {
-                        mutableStateListOf<Note>()
-                    }
-
-                    NoteScreen(
-                        notes = notes,
-                        addNote = {
-                                  notes.add(it)
-                        },
-                        removeNote = {
-                            notes.remove(it)
-                        }
-                    )
+                    NoteApp()
                 }
             }
         }
     }
 }
 
+@Composable
+fun NoteApp(noteViewModel: NoteViewModel = viewModel()){
 
+    val noteList = noteViewModel.getAllNotes()
+
+    NoteScreen(
+        notes = noteList,
+        addNote = {
+            noteViewModel.addNote(it)
+        },
+        removeNote = {
+            noteViewModel.removeNote(it)
+        }
+    )
+}
 
 @Preview(showBackground = true)
 @Composable
