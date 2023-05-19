@@ -13,6 +13,6 @@ data class Note(
     val title: String,
     @ColumnInfo(name = "note_desc")
     val desc: String,
-    @ColumnInfo(name = "note_timestamp")
-    val entryTimeStamp: Long = System.currentTimeMillis()
+    @ColumnInfo(name = "note_date")
+    val entryDate: Date = Date(System.currentTimeMillis())
 )

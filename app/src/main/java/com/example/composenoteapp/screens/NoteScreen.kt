@@ -23,6 +23,7 @@ import com.example.composenoteapp.R
 import com.example.composenoteapp.components.NoteButton
 import com.example.composenoteapp.components.NoteTextInputField
 import com.example.composenoteapp.models.Note
+import com.example.composenoteapp.utils.formatDate
 
 @Composable
 fun NoteScreen(
@@ -121,7 +122,7 @@ fun NoteRow(
         ) {
             Text(text = note.title, style = MaterialTheme.typography.subtitle2)
             Text(text = note.desc, style = MaterialTheme.typography.subtitle1)
-            Text(text = note.entryTimeStamp.toString(), style = MaterialTheme.typography.caption)
+            Text(text = formatDate(note.entryDate.time), style = MaterialTheme.typography.caption)
         }
     }
 }

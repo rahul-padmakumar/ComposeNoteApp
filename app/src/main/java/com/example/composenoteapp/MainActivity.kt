@@ -9,6 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.composenoteapp.screens.NoteScreen
 import com.example.composenoteapp.screens.NoteViewModel
@@ -36,10 +37,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun NoteApp(noteViewModel: NoteViewModel = viewModel()){
 
-    val noteList = noteViewModel.getAllNotes()
+    val noteList = noteViewModel.noteList.collectAsStateWithLifecycle()
 
     NoteScreen(
-        notes = noteList,
+        notes = noteList.value,
         addNote = {
             noteViewModel.addNote(it)
         },
