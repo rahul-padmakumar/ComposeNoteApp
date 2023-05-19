@@ -2,12 +2,13 @@ package com.example.composenoteapp.datas
 
 import androidx.room.*
 import com.example.composenoteapp.models.Note
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDatabaseDao {
 
     @Query("SELECT * from note_tbl")
-    fun getNotes(): List<Note>
+    fun getNotes(): Flow<List<Note>>
 
     @Query("SELECT * from note_tbl where id = :id")
     suspend fun getNote(id: String): Note
