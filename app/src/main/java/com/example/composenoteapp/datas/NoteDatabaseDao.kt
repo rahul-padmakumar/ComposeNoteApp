@@ -10,17 +10,17 @@ interface NoteDatabaseDao {
     fun getNotes(): List<Note>
 
     @Query("SELECT * from note_tbl where id = :id")
-    fun getNote(id: String): Note
+    suspend fun getNote(id: String): Note
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(note: Note)
+    suspend fun insert(note: Note)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(note: Note)
+    suspend fun update(note: Note)
 
     @Query("DELETE from note_tbl")
-    fun delete()
+    suspend fun delete()
 
     @Delete
-    fun delete(note: Note)
+    suspend fun delete(note: Note)
 }
